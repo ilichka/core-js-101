@@ -112,6 +112,7 @@ function removeLeadingAndTrailingWhitespaces(value) {
  */
 function repeatString(value, count) {
   let result = '';
+  // eslint-disable-next-line no-plusplus
   for (let i = 0; i < count; i++) {
     result += value;
   }
@@ -211,34 +212,37 @@ function getRectangleString(width, height) {
   let strCount = 0;
 
   function vertical() {
+    // eslint-disable-next-line no-plusplus
     for (let i = 0; i < width - 2; i++) {
       str += ' ';
     }
   }
 
   function horizontal() {
+    // eslint-disable-next-line no-plusplus
     for (let i = 0; i < width - 2; i++) {
       str += '─';
     }
   }
 
+  // eslint-disable-next-line no-plusplus
   for (let i = 0; i < height; i++) {
     if (strCount === 0) {
       str += '┌';
       horizontal();
       str += '┐\n';
+      // eslint-disable-next-line no-plusplus
+      strCount++;
+    } else if (strCount !== height - 1) {
+      str += '│';
+      vertical();
+      str += '│\n';
+      // eslint-disable-next-line no-plusplus
       strCount++;
     } else {
-      if (strCount !== height - 1) {
-        str += '│';
-        vertical();
-        str += '│\n';
-        strCount++;
-      } else {
-        str += '└';
-        horizontal();
-        str += '┘\n';
-      }
+      str += '└';
+      horizontal();
+      str += '┘\n';
     }
   }
   return str;
@@ -267,7 +271,9 @@ function encodeToRot13(str) {
   let result = [];
   one = one.split('');
   two = two.split('');
+  // eslint-disable-next-line no-param-reassign
   str = str.split('');
+  // eslint-disable-next-line no-plusplus
   for (let i = 0; i < str.length; i++) {
     if (str[i] !== ' ' && str[i] !== '?' && str[i] !== '!') {
       result.push(two[one.indexOf(str[i])]);
@@ -275,7 +281,7 @@ function encodeToRot13(str) {
       result.push(str[i]);
     }
   }
-  result = result.join('')
+  result = result.join('');
 
   return result;
 }
@@ -294,11 +300,12 @@ function encodeToRot13(str) {
  *   isString(new String('test')) => true
  */
 function isString(value) {
-  if(typeof value === 'object' && value!== null) {
-    if(value.length !== 0)
-    return typeof (value.valueOf()) === 'string';
+  if (typeof value === 'object' && value !== null) {
+    if (value.length !== 0) {
+      return typeof (value.valueOf()) === 'string';
+    }
   }
-    return typeof (value) === 'string';
+  return typeof (value) === 'string';
 }
 
 
@@ -326,14 +333,14 @@ function isString(value) {
  *   'Q♠' => 50
  *   'K♠' => 51
  */
-function getCardId( value ) {
-  let arr =[
-    'A♣','2♣','3♣','4♣','5♣','6♣','7♣','8♣','9♣','10♣','J♣','Q♣','K♣',
-    'A♦','2♦','3♦','4♦','5♦','6♦','7♦','8♦','9♦','10♦','J♦','Q♦','K♦',
-    'A♥','2♥','3♥','4♥','5♥','6♥','7♥','8♥','9♥','10♥','J♥','Q♥','K♥',
-    'A♠','2♠','3♠','4♠','5♠','6♠','7♠','8♠','9♠','10♠','J♠','Q♠','K♠'
+function getCardId(value) {
+  const arr = [
+    'A♣', '2♣', '3♣', '4♣', '5♣', '6♣', '7♣', '8♣', '9♣', '10♣', 'J♣', 'Q♣', 'K♣',
+    'A♦', '2♦', '3♦', '4♦', '5♦', '6♦', '7♦', '8♦', '9♦', '10♦', 'J♦', 'Q♦', 'K♦',
+    'A♥', '2♥', '3♥', '4♥', '5♥', '6♥', '7♥', '8♥', '9♥', '10♥', 'J♥', 'Q♥', 'K♥',
+    'A♠', '2♠', '3♠', '4♠', '5♠', '6♠', '7♠', '8♠', '9♠', '10♠', 'J♠', 'Q♠', 'K♠',
   ];
-  return arr.indexOf(value)
+  return arr.indexOf(value);
 }
 
 
