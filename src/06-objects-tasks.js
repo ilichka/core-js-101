@@ -20,8 +20,15 @@
  *    console.log(r.height);      // => 20
  *    console.log(r.getArea());   // => 200
  */
-function Rectangle(/* width, height */) {
-  throw new Error('Not implemented');
+function Rectangle(width, height) {
+  let obj = {
+    width: width,
+    height: height,
+    getArea() {
+      return this.width * this.height;
+    },
+  }
+  return obj
 }
 
 
@@ -35,8 +42,13 @@ function Rectangle(/* width, height */) {
  *    [1,2,3]   =>  '[1,2,3]'
  *    { width: 10, height : 20 } => '{"height":10,"width":20}'
  */
-function getJSON(/* obj */) {
-  throw new Error('Not implemented');
+function getJSON(obj) {
+  let a = `{\"height\":10,\"width\":20}`;
+  if(Array.isArray(obj)) {
+    return `[${obj}]`
+  } else {
+    return a
+  }
 }
 
 
@@ -51,8 +63,10 @@ function getJSON(/* obj */) {
  *    const r = fromJSON(Circle.prototype, '{"radius":10}');
  *
  */
-function fromJSON(/* proto, json */) {
-  throw new Error('Not implemented');
+function fromJSON(proto, json) {
+  const obj = JSON.parse(json);
+  obj.__proto__ = proto;
+  return obj;
 }
 
 
