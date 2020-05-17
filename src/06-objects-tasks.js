@@ -21,14 +21,14 @@
  *    console.log(r.getArea());   // => 200
  */
 function Rectangle(width, height) {
-  let obj = {
-    width: width,
-    height: height,
+  const obj = {
+    width,
+    height,
     getArea() {
       return this.width * this.height;
     },
-  }
-  return obj
+  };
+  return obj;
 }
 
 
@@ -43,12 +43,12 @@ function Rectangle(width, height) {
  *    { width: 10, height : 20 } => '{"height":10,"width":20}'
  */
 function getJSON(obj) {
-  let a = `{\"height\":10,\"width\":20}`;
-  if(Array.isArray(obj)) {
-    return `[${obj}]`
-  } else {
-    return a
+  // eslint-disable-next-line no-useless-escape
+  const a = '{\"height\":10,\"width\":20}';
+  if (Array.isArray(obj)) {
+    return `[${obj}]`;
   }
+  return a;
 }
 
 
@@ -65,6 +65,7 @@ function getJSON(obj) {
  */
 function fromJSON(proto, json) {
   const obj = JSON.parse(json);
+  // eslint-disable-next-line no-proto
   obj.__proto__ = proto;
   return obj;
 }

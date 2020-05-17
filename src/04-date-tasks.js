@@ -20,7 +20,7 @@
  *    'Sun, 17 May 1998 03:00:00 GMT+01' => Date()
  */
 function parseDataFromRfc2822(value) {
-  return new Date(value)
+  return new Date(value);
 }
 
 /**
@@ -35,7 +35,7 @@ function parseDataFromRfc2822(value) {
  *    '2016-01-19T08:07:37Z' => Date()
  */
 function parseDataFromIso8601(value) {
-  return Date.parse(value)
+  return Date.parse(value);
 }
 
 
@@ -56,9 +56,8 @@ function parseDataFromIso8601(value) {
 function isLeapYear(date) {
   if (date.getFullYear() % 4 === 0 && date.getFullYear() !== 1900) {
     return true;
-  } else {
-    return false;
   }
+  return false;
 }
 
 
@@ -78,26 +77,27 @@ function isLeapYear(date) {
  *    Date(2000,1,1,10,0,0),  Date(2000,1,1,15,20,10,453)   => "05:20:10.453"
  */
 function timeSpanToString(startDate, endDate) {
-  let h, m, s, ms;
+  let h; let m; let s; let
+    ms;
   if (startDate.getMilliseconds() === 0 && endDate.getMilliseconds() === 0) {
     ms = '000';
   } else {
-    ms = endDate.getMilliseconds() - startDate.getMilliseconds()
+    ms = endDate.getMilliseconds() - startDate.getMilliseconds();
   }
   if (endDate.getSeconds() - startDate.getSeconds() < 10) {
-    s = `0${endDate.getSeconds() - startDate.getSeconds()}`
+    s = `0${endDate.getSeconds() - startDate.getSeconds()}`;
   } else {
-    s = endDate.getSeconds() - startDate.getSeconds()
+    s = endDate.getSeconds() - startDate.getSeconds();
   }
   if (endDate.getMinutes() - startDate.getMinutes() < 10) {
-    m = `0${endDate.getMinutes() - startDate.getMinutes()}`
+    m = `0${endDate.getMinutes() - startDate.getMinutes()}`;
   } else {
-    m = endDate.getMinutes() - startDate.getMinutes()
+    m = endDate.getMinutes() - startDate.getMinutes();
   }
   if (endDate.getHours() - startDate.getHours() < 10) {
-    h = `0${endDate.getHours() - startDate.getHours()}`
+    h = `0${endDate.getHours() - startDate.getHours()}`;
   } else {
-    h = endDate.getHours() - startDate.getHours()
+    h = endDate.getHours() - startDate.getHours();
   }
   return `${h}:${m}:${s}.${ms}`;
 }
@@ -121,11 +121,11 @@ function timeSpanToString(startDate, endDate) {
  */
 function angleBetweenClockHands(date) {
   let res = date.getUTCHours();
-  if(res === 14) {
-    return 0.8726646259971648
+  if (res === 14) {
+    return 0.8726646259971648;
   }
-  if(res===23) {
-    return 0.4799655442984406
+  if (res === 23) {
+    return 0.4799655442984406;
   }
   if (+date.getUTCHours() > 12) {
     res = date.getUTCHours() - 12 * Math.floor(date.getUTCHours() / 12);

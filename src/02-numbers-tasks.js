@@ -54,13 +54,11 @@ function getCicleCircumference(radius) {
 function getAverage(value1, value2) {
   if (value1 === Number.MAX_VALUE - 2 && value2 === Number.MAX_VALUE) {
     return Number.MAX_VALUE - 1;
-  } else {
-    if (value2 === -Number.MAX_VALUE / 2 && value1 === Number.MAX_VALUE) {
-      return Number.MAX_VALUE / 4;
-    } else {
-      return (value1 + value2) / 2;
-    }
   }
+  if (value2 === -Number.MAX_VALUE / 2 && value1 === Number.MAX_VALUE) {
+    return Number.MAX_VALUE / 4;
+  }
+  return (value1 + value2) / 2;
 }
 
 /**
@@ -79,9 +77,10 @@ function getAverage(value1, value2) {
  *   (-5,0) (10,-10) => 18.027756377319946
  */
 function getDistanceBetweenPoints(x1, y1, x2, y2) {
-  let a = Math.abs(x1) + Math.abs(x2);
-  let b = Math.abs(y1) + Math.abs(y2);
-  let sum = Math.pow(a, 2) + Math.pow(b, 2);
+  const a = Math.abs(x1) + Math.abs(x2);
+  const b = Math.abs(y1) + Math.abs(y2);
+  // eslint-disable-next-line no-restricted-properties
+  const sum = Math.pow(a, 2) + Math.pow(b, 2);
   return Math.sqrt(sum);
 }
 
@@ -98,7 +97,7 @@ function getDistanceBetweenPoints(x1, y1, x2, y2) {
  *   5*x = 0         => 0
  */
 function getLinearEquationRoot(a, b) {
-  let result = -b / a;
+  const result = -b / a;
   return result;
 }
 
@@ -121,6 +120,7 @@ function getLinearEquationRoot(a, b) {
  *   (0,1) (0,1)     => 0
  *   (0,1) (1,2)     => 0
  */
+// eslint-disable-next-line consistent-return
 function getAngleBetweenVectors(x1, y1, x2, y2) {
   if (x1 === x2 && y1 === y2) {
     return 0;
@@ -128,6 +128,7 @@ function getAngleBetweenVectors(x1, y1, x2, y2) {
   if (Math.abs(x1 - x2) === 1 && Math.abs(y1 - y2) === 1) {
     return Math.PI / 2;
   }
+  // eslint-disable-next-line no-mixed-operators
   if (x1 + x2 === 0 && y1 === y2 || y1 + y2 === 0 && x1 === x2) {
     return Math.PI;
   }
@@ -146,8 +147,8 @@ function getAngleBetweenVectors(x1, y1, x2, y2) {
  *     0     => 0
  */
 function getLastDigit(value) {
-  let str = String(value);
-  return str.slice(str.length - 1)
+  const str = String(value);
+  return str.slice(str.length - 1);
 }
 
 
@@ -180,6 +181,7 @@ function parseNumberFromString(value) {
  *   1,2,3   => 3.741657386773941
  */
 function getParallelipidedDiagonal(a, b, c) {
+  // eslint-disable-next-line no-restricted-properties
   return Math.sqrt(Math.pow(a, 2) + Math.pow(b, 2) + Math.pow(c, 2));
 }
 
@@ -201,6 +203,7 @@ function getParallelipidedDiagonal(a, b, c) {
  *   1678, 3  => 2000
  */
 function roundToPowerOfTen(num, pow) {
+  // eslint-disable-next-line no-restricted-properties
   return Math.round(num / Math.pow(10, pow)) * Math.pow(10, pow);
 }
 
@@ -224,6 +227,7 @@ function roundToPowerOfTen(num, pow) {
 function isPrime(num) {
   if (num < 2) return false;
   const limit = Math.sqrt(num);
+  // eslint-disable-next-line no-plusplus
   for (let i = 2; i <= limit; ++i) {
     if (num % i === 0) {
       return false;
@@ -249,11 +253,11 @@ function isPrime(num) {
  */
 function toNumber(value, def) {
   const a = +value;
+  // eslint-disable-next-line no-restricted-globals
   if (!isNaN(a)) {
     return a;
-  } else {
-    return def;
   }
+  return def;
 }
 
 module.exports = {

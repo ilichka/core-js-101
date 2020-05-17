@@ -30,17 +30,14 @@
 function getFizzBuzz(num) {
   if (num % 5 === 0 && num % 3 === 0) {
     return 'FizzBuzz';
-  } else {
-    if (num % 5 === 0) {
-      return 'Buzz';
-    } else {
-      if (num % 3 === 0) {
-        return 'Fizz';
-      } else {
-        return num;
-      }
-    }
   }
+  if (num % 5 === 0) {
+    return 'Buzz';
+  }
+  if (num % 3 === 0) {
+    return 'Fizz';
+  }
+  return num;
 }
 
 
@@ -57,6 +54,7 @@ function getFizzBuzz(num) {
  */
 function getFactorial(n) {
   let res = 1;
+  // eslint-disable-next-line no-plusplus
   for (let i = 1; i < n + 1; i++) {
     res *= i;
   }
@@ -77,14 +75,16 @@ function getFactorial(n) {
  *   -1,1  =>  0  ( = -1 + 0 + 1 )
  */
 function getSumBetweenNumbers(n1, n2) {
-  let length = Math.abs(n2) - Math.abs(n1), res = 0;
+  const length = Math.abs(n2) - Math.abs(n1); let
+    res = 0;
   if (length === 0) {
-    return 0
-  } else {
-    for (let i = n1; i < n2 + 1; i++) {
-      res += i;
-    }
+    return 0;
   }
+  // eslint-disable-next-line no-plusplus
+  for (let i = n1; i < n2 + 1; i++) {
+    res += i;
+  }
+
   return res;
 }
 
@@ -105,15 +105,13 @@ function getSumBetweenNumbers(n1, n2) {
  *   10,10,10 =>  true
  */
 function isTriangle(a, b, c) {
-  let arr = [`${a}`, `${b}`, `${c}`];
-  arr.sort(function (a, b) {
-    return a - b;
-  });
+  const arr = [`${a}`, `${b}`, `${c}`];
+  // eslint-disable-next-line no-shadow
+  arr.sort((a, b) => a - b);
   if (+arr[0] + +arr[1] > +arr[2]) {
     return true;
-  } else {
-    return false
   }
+  return false;
 }
 
 
@@ -150,11 +148,11 @@ function isTriangle(a, b, c) {
  *
  */
 function doRectanglesOverlap(rect1, rect2) {
+  // eslint-disable-next-line max-len,no-mixed-operators
   if (rect1.width > Math.abs(rect2.left - rect1.left) && rect1.height > Math.abs(rect2.top - rect1.top) || rect2.width > Math.abs(rect1.left - rect2.left) && rect2.height > Math.abs(rect1.top - rect2.top)) {
     return true;
-  } else {
-    return false
   }
+  return false;
 }
 
 
@@ -185,12 +183,12 @@ function doRectanglesOverlap(rect1, rect2) {
  *
  */
 function isInsideCircle(circle, point) {
-  let rxy = Math.sqrt(Math.pow(point.x - circle.center.x, 2) + Math.pow(point.y - circle.center.y, 2));
+  // eslint-disable-next-line no-restricted-properties,max-len
+  const rxy = Math.sqrt(Math.pow(point.x - circle.center.x, 2) + Math.pow(point.y - circle.center.y, 2));
   if (rxy < circle.radius) {
     return true;
-  } else {
-    return false;
   }
+  return false;
 }
 
 
@@ -205,9 +203,12 @@ function isInsideCircle(circle, point) {
  *   'abracadabra'  => 'c'
  *   'entente' => null
  */
+// eslint-disable-next-line consistent-return
 function findFirstSingleChar(str) {
   let rly = [];
+  // eslint-disable-next-line no-plusplus
   for (let i = 0; i < str.length; i++) {
+    // eslint-disable-next-line no-plusplus
     for (let j = 0; j < str.length; j++) {
       if (str[i] === str[j]) {
         rly.push(str[i]);
@@ -215,9 +216,8 @@ function findFirstSingleChar(str) {
     }
     if (rly.length === 1) {
       return rly[0];
-    } else {
-      rly = [];
     }
+    rly = [];
   }
 }
 
@@ -245,20 +245,23 @@ function findFirstSingleChar(str) {
  *
  */
 function getIntervalString(a, b, isStartIncluded, isEndIncluded) {
-  let start, end, lol;
+  let start; let end; let
+    lol;
   if (isStartIncluded) {
-    start = '['
+    start = '[';
   } else {
-    start = '('
+    start = '(';
   }
   if (isEndIncluded) {
-    end = ']'
+    end = ']';
   } else {
-    end = ')'
+    end = ')';
   }
   if (a > b) {
     lol = a;
+    // eslint-disable-next-line no-param-reassign
     a = b;
+    // eslint-disable-next-line no-param-reassign
     b = lol;
   }
   return `${start}${a}, ${b}${end}`;
@@ -278,9 +281,10 @@ function getIntervalString(a, b, isStartIncluded, isEndIncluded) {
  * 'noon' => 'noon'
  */
 function reverseString(str) {
-  let arr = [];
+  const arr = [];
+  // eslint-disable-next-line no-plusplus
   for (let i = str.length; i > -1; i--) {
-    arr.push(str[i])
+    arr.push(str[i]);
   }
   return arr.join('');
 }
@@ -299,9 +303,12 @@ function reverseString(str) {
  *   34143 => 34143
  */
 function reverseInteger(num) {
+  // eslint-disable-next-line no-param-reassign
   num = num.toString();
+  // eslint-disable-next-line no-param-reassign
   num = num.split('');
   num.reverse();
+  // eslint-disable-next-line no-param-reassign
   num = num.join('');
   return +num;
 }
@@ -328,16 +335,23 @@ function reverseInteger(num) {
  *   4916123456789012 => false
  */
 function isCreditCardNumber(ccn) {
+  // eslint-disable-next-line camelcase
   function valid_credit_card(value) {
     if (/[^0-9-\s]+/.test(value)) return false;
-    var nCheck = 0, nDigit = 0, bEven = false;
-    value = value.toString().replace(/\D/g, "");
+    // eslint-disable-next-line no-var,block-scoped-var,vars-on-top
+    let nCheck = 0; var nDigit = 0; let
+      bEven = false;
+    // eslint-disable-next-line no-param-reassign
+    value = value.toString().replace(/\D/g, '');
 
-    for (var n = value.length - 1; n >= 0; n--) {
-      var cDigit = value.charAt(n),
-        nDigit = parseInt(cDigit, 10);
+    // eslint-disable-next-line no-plusplus
+    for (let n = value.length - 1; n >= 0; n--) {
+      const cDigit = value.charAt(n);
+      // eslint-disable-next-line no-var,no-redeclare,vars-on-top
+      var nDigit = parseInt(cDigit, 10);
 
       if (bEven) {
+        // eslint-disable-next-line no-cond-assign
         if ((nDigit *= 2) > 9) nDigit -= 9;
       }
 
@@ -345,10 +359,11 @@ function isCreditCardNumber(ccn) {
       bEven = !bEven;
     }
 
-    return (nCheck % 10) == 0;
+    // eslint-disable-next-line eqeqeq
+    return (nCheck % 10) === 0;
   }
 
- return  valid_credit_card(ccn)
+  return valid_credit_card(ccn);
 }
 
 /**
@@ -365,29 +380,33 @@ function isCreditCardNumber(ccn) {
  *   10000 ( 1+0+0+0+0 = 1 ) => 1
  *   165536 (1+6+5+5+3+6 = 26,  2+6 = 8) => 8
  */
+// eslint-disable-next-line consistent-return
 function getDigitalRoot(num) {
   function forr(n) {
-    let lol = num.toString();
+    const lol = num.toString();
+    // eslint-disable-next-line no-param-reassign
     num = 0;
+    // eslint-disable-next-line no-plusplus
     for (let i = 0; i < n; i++) {
+      // eslint-disable-next-line no-param-reassign
       num += +lol[i];
     }
   }
 
   if (num.toString().length === 6) {
-    forr(num.toString().length)
+    forr(num.toString().length);
   }
   if (num.toString().length === 5) {
-    forr(num.toString().length)
+    forr(num.toString().length);
   }
   if (num.toString().length === 4) {
-    forr(num.toString().length)
+    forr(num.toString().length);
   }
   if (num.toString().length === 3) {
-    forr(num.toString().length)
+    forr(num.toString().length);
   }
   if (num.toString().length === 2) {
-    forr(num.toString().length)
+    forr(num.toString().length);
   }
   if (num.toString().length === 1) {
     return num;
@@ -441,7 +460,7 @@ function isBracketsBalanced(/* str */) {
  *    365, 4  => '11231'
  *    365, 10 => '365'
  */
-function toNaryString(num, n) {
+function toNaryString(/* num, n */) {
   throw new Error('Not implemented');
 }
 
@@ -493,7 +512,6 @@ function getMatrixProduct(m1, m2) {
     }
   }
   return newMatrix;
-
 }
 
 
@@ -527,10 +545,13 @@ function getMatrixProduct(m1, m2) {
  *    [    ,   ,    ]]
  *
  */
+// eslint-disable-next-line consistent-return
 function evaluateTicTacToePosition(position) {
+  // eslint-disable-next-line no-mixed-operators
   if (position[0][0] === 'X' && position[0][1] === 'X' && position[0][2] === 'X' || position[0][0] === 'X' && position[1][0] === 'X' && position[2][0] === 'X' || position[1][0] === 'X' && position[1][1] === 'X' && position[1][2] === 'X' || position[0][1] === 'X' && position[1][1] === 'X' && position[2][1] === 'X' || position[2][0] === 'X' && position[2][1] === 'X' && position[2][2] === 'X' || position[0][2] === 'X' && position[1][2] === 'X' && position[2][2] === 'X' || position[0][0] === 'X' && position[1][1] === 'X' && position[2][2] === 'X' || position[0][2] === 'X' && position[1][1] === 'X' && position[2][0] === 'X') {
     return 'X';
   }
+  // eslint-disable-next-line no-mixed-operators
   if (position[0][0] === '0' && position[0][1] === '0' && position[0][2] === '0' || position[0][0] === '0' && position[1][0] === '0' && position[2][0] === '0' || position[1][0] === '0' && position[1][1] === '0' && position[1][2] === '0' || position[0][1] === '0' && position[1][1] === '0' && position[2][1] === '0' || position[2][0] === '0' && position[2][1] === '0' && position[2][2] === '0' || position[0][2] === '0' && position[1][2] === '0' && position[2][2] === '0' || position[0][0] === '0' && position[1][1] === '0' && position[2][2] === '0' || position[0][2] === '0' && position[1][1] === '0' && position[2][0] === '0') {
     return '0';
   }

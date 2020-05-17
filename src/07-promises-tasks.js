@@ -28,24 +28,23 @@
  *      .catch((error) => console.log(error.message)) // 'Error: Wrong parameter is passed!
  *                                                    //  Ask her again.';
  */
+// eslint-disable-next-line consistent-return
 function willYouMarryMe(isPositiveAnswer) {
   if (typeof isPositiveAnswer !== 'boolean') {
     return new Promise((resolve, reject) => {
-      reject(new Error('Wrong parameter is passed! Ask her again.'))
-    })
+      reject(new Error('Wrong parameter is passed! Ask her again.'));
+    });
   }
   if (isPositiveAnswer) {
-    return new Promise(resolve => {
+    return new Promise((resolve) => {
       resolve('Hooray!!! She said "Yes"!');
-    })
-  } else {
-    if (!isPositiveAnswer) {
-      return new Promise(resolve => {
-        resolve('Oh no, she said "No".')
-      })
-    }
+    });
   }
-
+  if (!isPositiveAnswer) {
+    return new Promise((resolve) => {
+      resolve('Oh no, she said "No".');
+    });
+  }
 }
 
 
@@ -65,9 +64,7 @@ function willYouMarryMe(isPositiveAnswer) {
  *
  */
 function processAllPromises(array) {
-  return new Promise(resolve => {
-    resolve(array)
-  })
+  return Promise.all(array);
 }
 
 /**

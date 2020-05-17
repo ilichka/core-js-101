@@ -23,8 +23,8 @@
  *   getComposition(Math.sin, Math.asin)(x) => Math.sin(Math.asin(x))
  *
  */
-function getComposition(f, g) {
-  return f => g => f + g;
+function getComposition(/* f, g */) {
+
 }
 
 
@@ -46,7 +46,8 @@ function getComposition(f, g) {
  */
 function getPowerFunction(exponent) {
   function f(n) {
-    return Math.pow(n, exponent)
+    // eslint-disable-next-line no-restricted-properties
+    return Math.pow(n, exponent);
   }
 
   return f;
@@ -67,22 +68,21 @@ function getPowerFunction(exponent) {
  *   getPolynom()      => null
  */
 function getPolynom() {
-  let length = arguments.length;
-  let arg = arguments;
+  // eslint-disable-next-line prefer-rest-params
+  const { length } = arguments;
+  // eslint-disable-next-line prefer-rest-params
+  const arg = arguments;
 
   function f() {
-    let str = `y = `;
+    let str = 'y = ';
+    // eslint-disable-next-line no-plusplus
     for (let i = length, j = 0; i > 0; i--, j++) {
       if (i >= 3) {
         str += `${arg[j]}*x^${i - 1}`;
-      } else {
-        if (i === 2) {
-          str += `${arg[j]}*x`;
-        } else {
-          if (i === 1) {
-            str += `${arg[j]}`;
-          }
-        }
+      } else if (i === 2) {
+        str += `${arg[j]}*x`;
+      } else if (i === 1) {
+        str += `${arg[j]}`;
       }
     }
     return str;
